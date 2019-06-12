@@ -17,23 +17,12 @@ menu.forEach(function (value) {
     document.getElementsByClassName("card-title")[menu.indexOf(value)].innerHTML = name;
     document.getElementsByClassName("card-text")[menu.indexOf(value)].innerHTML = price + "$";
 });
-// var btn = document.getElementsByClassName("btn");
-// var i = 0;
-// btn.forEach(function(value){
-// 	value.addEventListener("click", function(), starRatingByColor);
-// 	i++;
-// });
-// function starRatingByColor() {
-// 	var star = document.getElementsByClassName("fa");
-// 	star.classList.add("checked");
-// }
 var stars = document.getElementsByClassName("fa");
 var i = 0;
 menu.forEach(function (menuItem) {
     var j = 0;
     var _loop_1 = function (j_1) {
         var star = stars[i * 5 + j_1];
-        console.log(star);
         star.addEventListener("click", function () { setRating(menuItem, j_1 + 1); });
     };
     for (var j_1 = 0; j_1 < 5; j_1++) {
@@ -43,5 +32,10 @@ menu.forEach(function (menuItem) {
 });
 function setRating(item, rating) {
     item.rating = rating;
-    console.log(item);
+    for (var i_1 = 0; i_1 < 5; i_1++) {
+        stars[menu.indexOf(item) * 5 + i_1].classList.remove("checked");
+        if (rating > i_1) {
+            stars[menu.indexOf(item) * 5 + i_1].classList.add("checked");
+        }
+    }
 }

@@ -19,25 +19,12 @@ menu.forEach(function(value){
 	document.getElementsByClassName("card-text")[menu.indexOf(value)].innerHTML = price + "$";
 });
 
-// var btn = document.getElementsByClassName("btn");
-// var i = 0;
-// btn.forEach(function(value){
-// 	value.addEventListener("click", function(), starRatingByColor);
-// 	i++;
-// });
-
-// function starRatingByColor() {
-// 	var star = document.getElementsByClassName("fa");
-// 	star.classList.add("checked");
-// }
-
 var stars = document.getElementsByClassName("fa");
 var i:number = 0;
 menu.forEach(function(menuItem){
 	let j:number = 0;
 	for (let j = 0; j < 5; j++) {
 		let star = stars[i * 5 + j];
-		console.log(star);
 		star.addEventListener("click", function() {setRating(menuItem,j+1)});
 	}
 	i++;
@@ -45,5 +32,11 @@ menu.forEach(function(menuItem){
 
 function setRating(item : any, rating : number){
 	item.rating = rating;
-	console.log(item);
+	for (let i = 0; i < 5; i++) {
+		stars[menu.indexOf(item)*5+i].classList.remove("checked");
+		if (rating > i) {
+			stars[menu.indexOf(item)*5+i].classList.add("checked");
+		}
+	}
+
 }
